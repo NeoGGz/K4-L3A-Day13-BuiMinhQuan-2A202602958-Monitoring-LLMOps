@@ -4,7 +4,7 @@ Các lệnh dưới đây chạy từ thư mục gốc của repository cá nhâ
 
 ## Yêu cầu
 
-- Python 3.11 trở lên.
+- Python 3.11–3.13 cho các phiên bản dependency được khóa trong `requirements.txt`.
 - Git.
 - Một tài khoản Langfuse Cloud do chính học viên đăng ký.
 - Docker Desktop chỉ cần khi tự chọn chạy Langfuse local.
@@ -99,12 +99,13 @@ python scripts/validate_dashboard.py
 python -m pytest -q
 ```
 
-API mặc định chạy tại `http://127.0.0.1:8000`; health check ở `/health`, metrics ở `/metrics`.
+API mặc định chạy tại `http://127.0.0.1:8000`; health check ở `/health`, metrics ở `/metrics`. Dashboard sáu panel chạy tại `http://127.0.0.1:8000/dashboard`, đọc `data/logs.jsonl` của 60 phút gần nhất và tự làm mới sau 30 giây.
 
 ## Lỗi thường gặp
 
 - PowerShell chặn `Activate.ps1`: chạy `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` rồi activate lại.
 - `ModuleNotFoundError`: kiểm tra virtual environment đã được activate và chạy lại `pip install -r requirements.txt`.
+- Python 3.14 trên Windows có thể phải build `pydantic-core` từ source và báo thiếu `link.exe`; dùng Python 3.13 để cài đúng dependency đã khóa.
 - `ModuleNotFoundError: No module named 'app'` hoặc `'scripts'` khi chạy test: dùng `python -m pytest -q` từ thư mục gốc thay vì gọi `pytest` trực tiếp.
 - Không có `data/logs.jsonl`: bảo đảm API đang chạy trước khi chạy load test.
 - Không thấy trace: xác nhận key thuộc đúng project cá nhân, kiểm tra ba biến `LANGFUSE_*`, khởi động lại API rồi chạy lại load test; đợi vài giây và chọn time range gần nhất trên Langfuse.

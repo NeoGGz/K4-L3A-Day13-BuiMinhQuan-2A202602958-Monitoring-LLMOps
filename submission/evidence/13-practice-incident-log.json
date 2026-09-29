@@ -1,0 +1,40 @@
+﻿[
+    {
+        "service":  "api",
+        "payload":  {
+                        "message_preview":  "How should alerts be designed?"
+                    },
+        "event":  "request_received",
+        "feature":  "qa",
+        "correlation_id":  "req-e51404da",
+        "session_id":  "s10",
+        "user_id_hash":  "105a9cef3903",
+        "env":  "dev",
+        "model":  "claude-sonnet-4-5",
+        "level":  "info",
+        "ts":  "2026-09-29T14:11:06.022508Z"
+    },
+    {
+        "service":  "api",
+        "latency_ms":  2652,
+        "ttft_ms":  50,
+        "tokens_in":  28,
+        "tokens_out":  129,
+        "cost_usd":  0.002019,
+        "quality_score":  0.9,
+        "tool_name":  "retrieval",
+        "tool_success":  true,
+        "payload":  {
+                        "answer_preview":  "Starter answer. You should improve this output logic and add better quality chec..."
+                    },
+        "event":  "response_sent",
+        "feature":  "qa",
+        "correlation_id":  "req-e51404da",
+        "session_id":  "s10",
+        "user_id_hash":  "105a9cef3903",
+        "env":  "dev",
+        "model":  "claude-sonnet-4-5",
+        "level":  "info",
+        "ts":  "2026-09-29T14:11:08.676097Z"
+    }
+]

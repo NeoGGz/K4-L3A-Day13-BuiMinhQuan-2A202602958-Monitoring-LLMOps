@@ -19,6 +19,8 @@ Giữ time range mặc định 60 phút, refresh 30 giây và hiển thị thres
 
 ## Cách dựng
 
+Repo đã có dashboard local tại `http://127.0.0.1:8000/dashboard`. Chạy API và workload để trang có dữ liệu; trang đọc trực tiếp JSONL, hiển thị đúng sáu panel và tự refresh mỗi 30 giây. `config/dashboard.yaml` vẫn là contract nguồn/threshold.
+
 1. Hoàn thiện logging/PII và chạy API.
 2. Chạy `python scripts/load_test.py --concurrency 5` để tạo baseline.
 3. Dùng `data/logs.jsonl` làm nguồn chuẩn để tạo đúng sáu panel bằng Streamlit, notebook, Grafana hoặc công cụ tương đương. Langfuse vẫn là nơi mở trace/prompt version để điều tra sâu.

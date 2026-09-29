@@ -1,0 +1,62 @@
+﻿[
+    {
+        "service":  "api",
+        "payload":  {
+                        "message_preview":  "Here is my phone [REDACTED_PHONE_VN], what should be logged?"
+                    },
+        "event":  "request_received",
+        "feature":  "qa",
+        "correlation_id":  "req-f56d81ad",
+        "session_id":  "s05",
+        "user_id_hash":  "64f6ec689229",
+        "env":  "dev",
+        "model":  "claude-sonnet-4-5",
+        "level":  "info",
+        "ts":  "2026-09-29T14:08:17.862372Z"
+    },
+    {
+        "service":  "api",
+        "payload":  {
+                        "message_preview":  "What is your refund policy? My email is [REDACTED_EMAIL]"
+                    },
+        "event":  "request_received",
+        "feature":  "qa",
+        "correlation_id":  "req-4ada56a6",
+        "session_id":  "s01",
+        "user_id_hash":  "2055254ee30a",
+        "env":  "dev",
+        "model":  "claude-sonnet-4-5",
+        "level":  "info",
+        "ts":  "2026-09-29T14:08:18.170046Z"
+    },
+    {
+        "service":  "api",
+        "payload":  {
+                        "message_preview":  "What is the policy for PII and credit card [REDACTED_CREDIT_CARD]?"
+                    },
+        "event":  "request_received",
+        "feature":  "qa",
+        "correlation_id":  "req-11ce1edc",
+        "session_id":  "s09",
+        "user_id_hash":  "4d14d5d4f719",
+        "env":  "dev",
+        "model":  "claude-sonnet-4-5",
+        "level":  "info",
+        "ts":  "2026-09-29T14:08:18.943056Z"
+    },
+    {
+        "service":  "api",
+        "payload":  {
+                        "message_preview":  "Can you explain monitoring? CCCD [REDACTED_CCCD]"
+                    },
+        "event":  "request_received",
+        "feature":  "qa",
+        "session_id":  "pii-check",
+        "model":  "claude-sonnet-4-5",
+        "correlation_id":  "req-2bafd26b",
+        "env":  "dev",
+        "user_id_hash":  "9290d279889a",
+        "level":  "info",
+        "ts":  "2026-09-29T14:20:58.402388Z"
+    }
+]

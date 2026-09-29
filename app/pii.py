@@ -8,7 +8,10 @@ PII_PATTERNS: dict[str, str] = {
     "phone_vn": r"(?<!\d)(?:\+84|0)(?:[ .-]?\d){9}(?!\d)",
     "cccd": r"\b\d{12}\b",
     "credit_card": r"\b\d{4}[- ]?\d{4}[- ]?\d{4}[- ]?\d{4}\b",
-    # TODO: Add more patterns (e.g., Passport, Vietnamese address keywords)
+    # Vietnamese passport numbers commonly use one letter followed by eight digits.
+    "passport_vn": r"(?i)\b(?:[BCDEFGHJKLMNPRSTVWX]|P)\d{8}\b",
+    # Redact the value attached to an explicit address label, through line end.
+    "address": r"(?i)(?:địa chỉ|dia chi|address)\s*[:：]\s*[^\n]+",
 }
 
 
