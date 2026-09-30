@@ -2258,6 +2258,383 @@
         ]
       }
     ],
+    "official_challenge": [
+      {
+        "correlation_id": "req-d03891d8",
+        "observations": [
+          {
+            "trace_id": "65ab1b368b65070a07b7dbe379b81b1e",
+            "observation_id": "e044bb9d223f3a43",
+            "parent_observation_id": "e31a4ece40285068",
+            "type": "GENERATION",
+            "name": "llm-generation",
+            "start_time": "2026-09-30T03:36:58.848Z",
+            "latency_seconds": 0.151,
+            "prompt_name": "day13-chat",
+            "prompt_version": 1,
+            "usage_details": {
+              "input": 35,
+              "output": 121,
+              "total": 156
+            },
+            "total_cost_usd": 0.00192,
+            "metadata": {
+              "correlation_id": "req-d03891d8",
+              "prompt_source": "langfuse",
+              "prompt_name": "day13-chat",
+              "prompt_label": "production",
+              "prompt_version": 1,
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "ttft_ms": 50
+            }
+          },
+          {
+            "trace_id": "65ab1b368b65070a07b7dbe379b81b1e",
+            "observation_id": "e31a4ece40285068",
+            "parent_observation_id": null,
+            "type": "AGENT",
+            "name": "lab-agent-run",
+            "start_time": "2026-09-30T03:36:55.455Z",
+            "latency_seconds": 3.544,
+            "prompt_name": "",
+            "prompt_version": null,
+            "usage_details": {},
+            "total_cost_usd": null,
+            "metadata": {
+              "correlation_id": "req-d03891d8",
+              "prompt_source": "langfuse",
+              "prompt_name": "day13-chat",
+              "prompt_label": "production",
+              "prompt_version": 1,
+              "prompt_fetch_error": "",
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "doc_count": 1
+            }
+          },
+          {
+            "trace_id": "65ab1b368b65070a07b7dbe379b81b1e",
+            "observation_id": "51776741c8ad28c4",
+            "parent_observation_id": "e31a4ece40285068",
+            "type": "RETRIEVER",
+            "name": "retrieval",
+            "start_time": "2026-09-30T03:36:55.455Z",
+            "latency_seconds": 2.501,
+            "prompt_name": "",
+            "prompt_version": null,
+            "usage_details": {},
+            "total_cost_usd": null,
+            "metadata": {
+              "correlation_id": "req-d03891d8",
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "latency_ms": 2500
+            }
+          }
+        ]
+      },
+      {
+        "correlation_id": "req-3bd86b59",
+        "observations": [
+          {
+            "trace_id": "6ed299912cc4f4beb8de113db72174ac",
+            "observation_id": "195c16f919ba6819",
+            "parent_observation_id": "27864b1d9bd91c32",
+            "type": "GENERATION",
+            "name": "llm-generation",
+            "start_time": "2026-09-30T03:37:04.161Z",
+            "latency_seconds": 0.15,
+            "prompt_name": "day13-chat",
+            "prompt_version": 1,
+            "usage_details": {
+              "input": 36,
+              "output": 117,
+              "total": 153
+            },
+            "total_cost_usd": 0.001863,
+            "metadata": {
+              "correlation_id": "req-3bd86b59",
+              "prompt_source": "langfuse",
+              "prompt_name": "day13-chat",
+              "prompt_label": "production",
+              "prompt_version": 1,
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "ttft_ms": 50
+            }
+          },
+          {
+            "trace_id": "6ed299912cc4f4beb8de113db72174ac",
+            "observation_id": "1d0d8e49674ac33c",
+            "parent_observation_id": "27864b1d9bd91c32",
+            "type": "RETRIEVER",
+            "name": "retrieval",
+            "start_time": "2026-09-30T03:37:01.660Z",
+            "latency_seconds": 2.5,
+            "prompt_name": "",
+            "prompt_version": null,
+            "usage_details": {},
+            "total_cost_usd": null,
+            "metadata": {
+              "correlation_id": "req-3bd86b59",
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "latency_ms": 2500
+            }
+          },
+          {
+            "trace_id": "6ed299912cc4f4beb8de113db72174ac",
+            "observation_id": "27864b1d9bd91c32",
+            "parent_observation_id": null,
+            "type": "AGENT",
+            "name": "lab-agent-run",
+            "start_time": "2026-09-30T03:37:01.659Z",
+            "latency_seconds": 2.653,
+            "prompt_name": "",
+            "prompt_version": null,
+            "usage_details": {},
+            "total_cost_usd": null,
+            "metadata": {
+              "correlation_id": "req-3bd86b59",
+              "prompt_source": "langfuse",
+              "prompt_name": "day13-chat",
+              "prompt_label": "production",
+              "prompt_version": 1,
+              "prompt_fetch_error": "",
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "doc_count": 1
+            }
+          }
+        ]
+      },
+      {
+        "correlation_id": "req-300d393d",
+        "observations": [
+          {
+            "trace_id": "1725dfd615ab8650bb575996cf99b4c0",
+            "observation_id": "e9867b4235e96503",
+            "parent_observation_id": "47f237390191bd58",
+            "type": "GENERATION",
+            "name": "llm-generation",
+            "start_time": "2026-09-30T03:37:01.505Z",
+            "latency_seconds": 0.151,
+            "prompt_name": "day13-chat",
+            "prompt_version": 1,
+            "usage_details": {
+              "input": 35,
+              "output": 111,
+              "total": 146
+            },
+            "total_cost_usd": 0.00177,
+            "metadata": {
+              "correlation_id": "req-300d393d",
+              "prompt_source": "langfuse",
+              "prompt_name": "day13-chat",
+              "prompt_label": "production",
+              "prompt_version": 1,
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "ttft_ms": 50
+            }
+          },
+          {
+            "trace_id": "1725dfd615ab8650bb575996cf99b4c0",
+            "observation_id": "9bd683f2037042c9",
+            "parent_observation_id": "47f237390191bd58",
+            "type": "RETRIEVER",
+            "name": "retrieval",
+            "start_time": "2026-09-30T03:36:59.004Z",
+            "latency_seconds": 2.501,
+            "prompt_name": "",
+            "prompt_version": null,
+            "usage_details": {},
+            "total_cost_usd": null,
+            "metadata": {
+              "correlation_id": "req-300d393d",
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "latency_ms": 2500
+            }
+          },
+          {
+            "trace_id": "1725dfd615ab8650bb575996cf99b4c0",
+            "observation_id": "47f237390191bd58",
+            "parent_observation_id": null,
+            "type": "AGENT",
+            "name": "lab-agent-run",
+            "start_time": "2026-09-30T03:36:59.003Z",
+            "latency_seconds": 2.653,
+            "prompt_name": "",
+            "prompt_version": null,
+            "usage_details": {},
+            "total_cost_usd": null,
+            "metadata": {
+              "correlation_id": "req-300d393d",
+              "prompt_source": "langfuse",
+              "prompt_name": "day13-chat",
+              "prompt_label": "production",
+              "prompt_version": 1,
+              "prompt_fetch_error": "",
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "doc_count": 1
+            }
+          }
+        ]
+      },
+      {
+        "correlation_id": "req-faf1a60a",
+        "observations": [
+          {
+            "trace_id": "16e4957b6e85837e7310b01bcedcab6f",
+            "observation_id": "bb72ea6536e1d0d3",
+            "parent_observation_id": "c0ed6745e9759186",
+            "type": "GENERATION",
+            "name": "llm-generation",
+            "start_time": "2026-09-30T03:37:06.815Z",
+            "latency_seconds": 0.151,
+            "prompt_name": "day13-chat",
+            "prompt_version": 1,
+            "usage_details": {
+              "input": 34,
+              "output": 110,
+              "total": 144
+            },
+            "total_cost_usd": 0.001752,
+            "metadata": {
+              "correlation_id": "req-faf1a60a",
+              "prompt_source": "langfuse",
+              "prompt_name": "day13-chat",
+              "prompt_label": "production",
+              "prompt_version": 1,
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "ttft_ms": 50
+            }
+          },
+          {
+            "trace_id": "16e4957b6e85837e7310b01bcedcab6f",
+            "observation_id": "4bce43ea5b486e40",
+            "parent_observation_id": "c0ed6745e9759186",
+            "type": "RETRIEVER",
+            "name": "retrieval",
+            "start_time": "2026-09-30T03:37:04.315Z",
+            "latency_seconds": 2.5,
+            "prompt_name": "",
+            "prompt_version": null,
+            "usage_details": {},
+            "total_cost_usd": null,
+            "metadata": {
+              "correlation_id": "req-faf1a60a",
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "latency_ms": 2500
+            }
+          },
+          {
+            "trace_id": "16e4957b6e85837e7310b01bcedcab6f",
+            "observation_id": "c0ed6745e9759186",
+            "parent_observation_id": null,
+            "type": "AGENT",
+            "name": "lab-agent-run",
+            "start_time": "2026-09-30T03:37:04.314Z",
+            "latency_seconds": 2.652,
+            "prompt_name": "",
+            "prompt_version": null,
+            "usage_details": {},
+            "total_cost_usd": null,
+            "metadata": {
+              "correlation_id": "req-faf1a60a",
+              "prompt_source": "langfuse",
+              "prompt_name": "day13-chat",
+              "prompt_label": "production",
+              "prompt_version": 1,
+              "prompt_fetch_error": "",
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "doc_count": 1
+            }
+          }
+        ]
+      },
+      {
+        "correlation_id": "req-d1ee72b6",
+        "observations": [
+          {
+            "trace_id": "6e79162e8e95728ed601d0c6f462a4d6",
+            "observation_id": "07864b5de4c0a859",
+            "parent_observation_id": "0b5d2808352fd6df",
+            "type": "GENERATION",
+            "name": "llm-generation",
+            "start_time": "2026-09-30T03:37:09.471Z",
+            "latency_seconds": 0.151,
+            "prompt_name": "day13-chat",
+            "prompt_version": 1,
+            "usage_details": {
+              "input": 35,
+              "output": 126,
+              "total": 161
+            },
+            "total_cost_usd": 0.001995,
+            "metadata": {
+              "correlation_id": "req-d1ee72b6",
+              "prompt_source": "langfuse",
+              "prompt_name": "day13-chat",
+              "prompt_label": "production",
+              "prompt_version": 1,
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "ttft_ms": 50
+            }
+          },
+          {
+            "trace_id": "6e79162e8e95728ed601d0c6f462a4d6",
+            "observation_id": "f3f036837f3da804",
+            "parent_observation_id": "0b5d2808352fd6df",
+            "type": "RETRIEVER",
+            "name": "retrieval",
+            "start_time": "2026-09-30T03:37:06.970Z",
+            "latency_seconds": 2.501,
+            "prompt_name": "",
+            "prompt_version": null,
+            "usage_details": {},
+            "total_cost_usd": null,
+            "metadata": {
+              "correlation_id": "req-d1ee72b6",
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "latency_ms": 2500
+            }
+          },
+          {
+            "trace_id": "6e79162e8e95728ed601d0c6f462a4d6",
+            "observation_id": "0b5d2808352fd6df",
+            "parent_observation_id": null,
+            "type": "AGENT",
+            "name": "lab-agent-run",
+            "start_time": "2026-09-30T03:37:06.969Z",
+            "latency_seconds": 2.653,
+            "prompt_name": "",
+            "prompt_version": null,
+            "usage_details": {},
+            "total_cost_usd": null,
+            "metadata": {
+              "correlation_id": "req-d1ee72b6",
+              "prompt_source": "langfuse",
+              "prompt_name": "day13-chat",
+              "prompt_label": "production",
+              "prompt_version": 1,
+              "prompt_fetch_error": "",
+              "feature": "monitoring",
+              "model": "claude-sonnet-4-5",
+              "doc_count": 1
+            }
+          }
+        ]
+      }
+    ],
     "promoted_v2": [
       {
         "correlation_id": "req-4123db7c",

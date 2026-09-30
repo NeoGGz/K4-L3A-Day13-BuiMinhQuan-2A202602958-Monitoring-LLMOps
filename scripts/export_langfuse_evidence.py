@@ -17,6 +17,7 @@ WORKLOAD_FILES = {
     "baseline": EVIDENCE / "07-prompt-baseline-workload.txt",
     "candidate": EVIDENCE / "08-prompt-candidate-workload.txt",
     "practice_rag_slow": EVIDENCE / "17-live-practice-workload.txt",
+    "official_challenge": EVIDENCE / "21-challenge-workload.txt",
 }
 SINGLE_FILES = {
     "promoted_v2": EVIDENCE / "09-production-v2-request.json",

@@ -1,6 +1,6 @@
 # Báo cáo cá nhân — K4-L3A Day 13 Monitoring & LLMOps
 
-> Số liệu local được đo ngày 29/09/2026; trace Langfuse cá nhân được đo ngày 30/09/2026. Challenge chính thức cần file riêng từ Lab Coach.
+> Số liệu local được đo ngày 29/09/2026; trace Langfuse cá nhân và challenge chính thức được đo ngày 30/09/2026.
 
 ## 1. Thông tin học viên
 
@@ -10,7 +10,7 @@
 - **Repository URL:** https://github.com/NeoGGz/K4-L3A-Day13-BuiMinhQuan-2A202602958-Monitoring-LLMOps
 - **Tên repo cần rà soát:** URL hiện có `K4-L3A-Day13-...`, trong khi `docs/SUBMISSION.md` yêu cầu mẫu `K4-L3-DAY13-HoVaTen-MSSV-Monitoring-LLMOps`; cần đổi tên hoặc xác nhận quy ước với Lab Coach trước khi nộp.
 - **Commit SHA cuối:** [điền sau commit nộp]
-- **Challenge ID:** [chỉ điền sau khi Lab Coach release]
+- **Challenge ID:** `day13-k4-l3a-monitoring-llmops-v1` (K4-L3A, seed 1311)
 - **Tên project Langfuse cá nhân:** `day13-k4-l3a-2A202602958` ([project](https://cloud.langfuse.com/project/cmumrr8r001evad0chsjpadw3))
 
 ## 2. Evidence index
@@ -28,16 +28,16 @@ Chỉ thêm đường dẫn khi evidence thật đã được lưu trong `submis
 | Prompt versions / rollback | [Prompt `day13-chat`](https://cloud.langfuse.com/project/cmumrr8r001evad0chsjpadw3/prompts/day13-chat); baseline/candidate và promote/rollback trong trace index |
 | Dashboard runtime | [`evidence/11-dashboard-overview.png`](evidence/11-dashboard-overview.png) |
 | Practice incident metric / log | [`evidence/12-practice-incident-metrics.json`](evidence/12-practice-incident-metrics.json), [`evidence/13-practice-incident-log.json`](evidence/13-practice-incident-log.json) |
-| Challenge chính thức: metric / log / trace | Chỉ điền sau khi có file riêng của lớp và project Langfuse |
+| Challenge chính thức: metric / log / trace | [`evidence/20-challenge-baseline-metrics.json`](evidence/20-challenge-baseline-metrics.json), [`evidence/22-challenge-incident-metrics.json`](evidence/22-challenge-incident-metrics.json), [`evidence/23-challenge-log.json`](evidence/23-challenge-log.json), nhóm `official_challenge` trong [`evidence/14-langfuse-trace-index.json`](evidence/14-langfuse-trace-index.json) |
 
 ## 3. Kết quả kỹ thuật
 
 | Nội dung | Baseline | Kết quả cuối | Nhận xét |
 |---|---|---|---|
-| `validate_logs.py` | Không đo trước khi sửa source | 100/100 | 167 log records, 80 correlation IDs; 0 PII leak |
+| `validate_logs.py` | Không đo trước khi sửa source | 100/100 | 182 log records, 88 correlation IDs; 0 PII leak |
 | `validate_dashboard.py` | Không đo trước khi sửa source | 6/6 panel | YAML contract hợp lệ; runtime có ảnh |
 | `pytest` | Lần đầu lỗi quyền thư mục tạm Windows | 24 passed | Chạy lại với `--basetemp` và quyền ghi phù hợp trong workspace |
-| Số traces hợp lệ | 0 | 32 | 10 baseline v1, 10 candidate v2, 10 practice `rag_slow`, 1 promote v2, 1 rollback v1; mỗi trace có 3 observations |
+| Số traces hợp lệ | 0 | 37 | 10 baseline v1, 10 candidate v2, 10 practice `rag_slow`, 5 challenge, 1 promote v2, 1 rollback v1; mỗi trace có 3 observations |
 | Số PII leak | — | 0 | Log validator trên toàn bộ log local |
 | Latency P95 / TTFT P95 | 151 / 50 ms | 2652 / 50 ms sau practice `rag_slow` | `/metrics` cộng dồn 20 request; client latency cao hơn do concurrency |
 | Retrieval success rate | 100% | 100% | Practice `rag_slow` chỉ tăng latency |
@@ -52,7 +52,7 @@ Chỉ thêm đường dẫn khi evidence thật đã được lưu trong `submis
 
 ## 5. Tracing và prompt versioning
 
-- Cây trace đã xác nhận: root `lab-agent-run` → child `retrieval` → child `llm-generation`. Mỗi trace có một observation mỗi loại, tổng 96 observations cho 32 request trong trace index.
+- Cây trace đã xác nhận: root `lab-agent-run` → child `retrieval` → child `llm-generation`. Mỗi trace có một observation mỗi loại, tổng 111 observations cho 37 request trong trace index.
 - Root metadata gồm correlation ID, feature, model và prompt name/label/version/source. Retrieval span lưu preview đã scrub và số document; generation lưu model, token usage, cost estimate và TTFT. Raw prompt/output không được gửi làm observation input/output.
 - **Trace IDs baseline (10):** `11b32179fb89b75d148b7c768bfbfc1a`, `72d89607cfc9046cea73a8f2fb2bcb1c`, `0ec995962e700d470637ea3825980bf8`, `3e98ca044b2781c94d5de9ab748a5177`, `f7653d796d5e987c63992abd1849de2b`, `ae9244715a601e92733fb141c5f96265`, `4b10b7a895fbfffd8256f7fc27a20017`, `d040c0b3b9a5ddaa528239f2ef4f25a5`, `877881e79816d3d5f9b8d884cbca35f3`, `83bc1b8b6329dd2ce03ad2e971779683`.
 - **Trace IDs candidate (10):** `c0337bd9e315445e18ff5de04ff62666`, `fc44f7fc242a32fc9a7bb9076befb65c`, `c7609698038322203e0045d3bd7ef17f`, `fd5ac34dc3efc3b0e8985495e813b430`, `a99717d44ffccc9ba2b02f6af9cd8753`, `6921e6b54ddc574cedf6394d4804ae74`, `a8cbe364ef558aa8f1c9b0d9f748b00c`, `fa8f2ffe507d978e543c5f2053f6d765`, `7a0f8e5b0148be8af21cabf7e63883bd`, `3a3a32889829666778299abac4b6985e`.
@@ -70,13 +70,15 @@ Chỉ thêm đường dẫn khi evidence thật đã được lưu trong `submis
 
 ## 7. Điều tra challenge
 
-Chưa có file challenge chính thức trong repository. Không tự tạo hoặc suy đoán challenge K4-L3A.
+File riêng do Lab Coach cấp đã được đọc tại `config/challenge.json`; Git bỏ qua file này. Challenge ID `day13-k4-l3a-monitoring-llmops-v1`, cohort K4, seed 1311, incident `rag_slow`, feature ảnh hưởng `monitoring`, ngưỡng latency 2000 ms, 5 query chính thức. Workload với concurrency 5 trả 5/5 HTTP 200; [kết quả request](evidence/21-challenge-workload.txt).
 
-- **Challenge ID / khoảng thời gian:** [điền từ file Lab Coach]
-- **Triệu chứng metrics:** [điền]
-- **Log line / correlation ID:** [điền, không đưa PII]
-- **Trace ID / span gây ảnh hưởng:** [điền từ project cá nhân]
-- **Root cause / fix action / preventive measure:** [điền theo bằng chứng metrics → log → trace]
+- **Khoảng thời gian:** 03:36:54–03:37:09 UTC ngày 30/09/2026, theo timestamp log.
+- **Metrics → triệu chứng:** sau khi khởi động lại API, baseline có traffic 0. Sau 5 request challenge, traffic 5, latency P50 2652 ms, P95/P99 3543 ms, TTFT P95 50 ms, retrieval success 100%, không có HTTP error. P95 vượt ngưỡng 2000 ms của challenge. Client wall time 12–15 giây gồm overhead ngoài pipeline nên kết luận root cause dựa vào metrics server và trace span.
+- **Logs → request cụ thể:** `req-300d393d`, feature `monitoring`, `request_received` lúc 03:36:59.002864Z; `response_sent` lúc 03:37:01.656971Z với `latency_ms=2652`, `ttft_ms=50`, `tool_success=true`. [Log đã lọc theo correlation ID](evidence/23-challenge-log.json).
+- **Traces → span chậm:** trace `1725dfd615ab8650bb575996cf99b4c0` có root `lab-agent-run` 2.653 giây, child `retrieval` 2.501 giây và `llm-generation` 0.151 giây. Metadata root khớp `req-300d393d`, prompt `day13-chat` label `production` version 1 từ Langfuse. Cả 5 trace challenge đều có retrieval 2.500–2.501 giây; [trace index](evidence/14-langfuse-trace-index.json).
+- **Root cause:** incident `rag_slow` làm bước retrieval chậm; generation và TTFT vẫn bình thường. Request đầu còn thêm thời gian fetch prompt từ Langfuse, nhưng retrieval chậm ở cả 5 request và là nguyên nhân chung.
+- **Fix action và xác nhận:** tắt `rag_slow` qua `scripts/inject_incident.py --disable`; `/health` cho thấy tất cả incident `false`. Request sau khi tắt có `latency_ms=151` ([evidence](evidence/24-challenge-recovery.json)).
+- **Preventive measure:** theo dõi P95 end-to-end và latency của retrieval span riêng theo feature; cảnh báo khi vượt ngưỡng trong `config/alert_rules.yaml`, kiểm tra retriever/index và rollback cấu hình retrieval khi tái diễn.
 
 ### Practice local (không thay thế challenge chính thức)
 
@@ -99,7 +101,7 @@ Chưa có file challenge chính thức trong repository. Không tự tạo hoặ
 - Correlation ID nối request log với trace metadata, còn child spans tách thời gian retrieval và generation để khoanh vùng nguyên nhân.
 - Prompt label là con trỏ triển khai; rollback kiểm chứng bằng trace mới ghi nhận lại version sau khi label production được chuyển về bản trước.
 - **Blocker / cách xử lý:** Python 3.14 trên Windows thiếu wheel cho `pydantic-core` bản đã khóa và máy thiếu MSVC linker; đã cài Python 3.13 trong workspace rồi tạo lại `.venv`. Pytest đầu tiên bị lỗi quyền ở thư mục Temp; chạy lại với `--basetemp` trong workspace và đạt 24/24.
-- **Giới hạn hiện tại:** project Langfuse, 32 trace hợp lệ và rollback đã kiểm chứng; chưa có challenge riêng của lớp nên chưa thể kết luận root cause chính thức. Evidence ảnh từ giao diện Langfuse vẫn cần bổ sung; trace index JSON và link project cho phép kiểm tra trực tiếp.
+- **Giới hạn hiện tại:** project Langfuse, 37 trace hợp lệ, rollback và challenge chính thức đã kiểm chứng. Evidence ảnh từ giao diện Langfuse vẫn cần bổ sung; trace index JSON và link project cho phép kiểm tra trực tiếp.
 
 ## 9. Checklist trước khi nộp
 
@@ -108,6 +110,6 @@ Chưa có file challenge chính thức trong repository. Không tự tạo hoặ
 - [x] Chạy workload local, pytest và hai validators; cập nhật số liệu thật.
 - [x] Dựng dashboard runtime sáu panel và lưu ảnh dữ liệu thật.
 - [x] Có ít nhất 10 traces cá nhân, prompt v1/v2 và rollback.
-- [ ] Khi Lab Coach release challenge, nối metric → log → trace cho cùng request.
+- [x] Chạy challenge K4-L3A và nối metric → log → trace cho cùng request.
 - [x] Lưu evidence local bằng đường dẫn tương đối trong `submission/evidence/`.
-- [ ] Rà soát secret, raw PII và file challenge trước khi push.
+- [x] Rà soát secret, raw PII và file challenge trước khi push: không có key Langfuse trong evidence; `.env` và `config/challenge.json` đều được Git bỏ qua; log validator báo 0 PII leak.
