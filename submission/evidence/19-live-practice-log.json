@@ -1,0 +1,18 @@
+[
+  {
+    "ts": "2026-09-30T02:09:57.233201Z",
+    "event": "request_received",
+    "correlation_id": "req-06054992",
+    "feature": "qa"
+  },
+  {
+    "ts": "2026-09-30T02:09:59.886211Z",
+    "event": "response_sent",
+    "correlation_id": "req-06054992",
+    "latency_ms": 2651,
+    "ttft_ms": 50,
+    "feature": "qa",
+    "tool_name": "retrieval",
+    "tool_success": true
+  }
+]
