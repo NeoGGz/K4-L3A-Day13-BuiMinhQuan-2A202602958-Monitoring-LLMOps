@@ -24,7 +24,7 @@ Chỉ thêm đường dẫn khi evidence thật đã được lưu trong `submis
 | Dashboard validator | [`evidence/03-dashboard-validator.txt`](evidence/03-dashboard-validator.txt) |
 | Structured log và correlation ID | [`evidence/04-structured-log.json`](evidence/04-structured-log.json) |
 | PII redaction | [`evidence/05-pii-redaction.json`](evidence/05-pii-redaction.json) |
-| Trace list / waterfall / metadata | [`evidence/14-langfuse-trace-index.json`](evidence/14-langfuse-trace-index.json); [ảnh waterfall practice](evidence/25-practice-waterfall.png) của trace `38d2fe5cbf03e825fa69a0a2ad2b0be2`; [mở tracing](https://cloud.langfuse.com/project/cmumrr8r001evad0chsjpadw3/traces) |
+| Trace list / waterfall / metadata | [`evidence/14-langfuse-trace-index.json`](evidence/14-langfuse-trace-index.json); [ảnh waterfall challenge](evidence/27-challenge-waterfall.png) của trace `1725dfd615ab8650bb575996cf99b4c0`; [ảnh waterfall practice](evidence/25-practice-waterfall.png) của trace `38d2fe5cbf03e825fa69a0a2ad2b0be2` |
 | Prompt versions / rollback | [Ảnh v1/v2 và label production trên v1](evidence/26-prompt-versions-and-rollback.png); [Prompt `day13-chat`](https://cloud.langfuse.com/project/cmumrr8r001evad0chsjpadw3/prompts/day13-chat); baseline/candidate và promote/rollback trong trace index |
 | Dashboard runtime | [`evidence/11-dashboard-overview.png`](evidence/11-dashboard-overview.png) |
 | Practice incident metric / log | [`evidence/12-practice-incident-metrics.json`](evidence/12-practice-incident-metrics.json), [`evidence/13-practice-incident-log.json`](evidence/13-practice-incident-log.json) |
@@ -75,7 +75,7 @@ File riêng do Lab Coach cấp đã được đọc tại `config/challenge.json
 - **Khoảng thời gian:** 03:36:54–03:37:09 UTC ngày 30/09/2026, theo timestamp log.
 - **Metrics → triệu chứng:** sau khi khởi động lại API, baseline có traffic 0. Sau 5 request challenge, traffic 5, latency P50 2652 ms, P95/P99 3543 ms, TTFT P95 50 ms, retrieval success 100%, không có HTTP error. P95 vượt ngưỡng 2000 ms của challenge. Client wall time 12–15 giây gồm overhead ngoài pipeline nên kết luận root cause dựa vào metrics server và trace span.
 - **Logs → request cụ thể:** `req-300d393d`, feature `monitoring`, `request_received` lúc 03:36:59.002864Z; `response_sent` lúc 03:37:01.656971Z với `latency_ms=2652`, `ttft_ms=50`, `tool_success=true`. [Log đã lọc theo correlation ID](evidence/23-challenge-log.json).
-- **Traces → span chậm:** trace `1725dfd615ab8650bb575996cf99b4c0` có root `lab-agent-run` 2.653 giây, child `retrieval` 2.501 giây và `llm-generation` 0.151 giây. Metadata root khớp `req-300d393d`, prompt `day13-chat` label `production` version 1 từ Langfuse. Cả 5 trace challenge đều có retrieval 2.500–2.501 giây; [trace index](evidence/14-langfuse-trace-index.json). Ảnh waterfall hiện có là của lượt practice `req-ec4779de`; ảnh waterfall của challenge này cần bổ sung.
+- **Traces → span chậm:** trace `1725dfd615ab8650bb575996cf99b4c0` có root `lab-agent-run` 2.653 giây, child `retrieval` 2.501 giây và `llm-generation` 0.151 giây. Metadata root khớp `req-300d393d`, prompt `day13-chat` label `production` version 1 từ Langfuse. Cả 5 trace challenge đều có retrieval 2.500–2.501 giây; [trace index](evidence/14-langfuse-trace-index.json) và [ảnh waterfall challenge](evidence/27-challenge-waterfall.png).
 - **Root cause:** incident `rag_slow` làm bước retrieval chậm; generation và TTFT vẫn bình thường. Request đầu còn thêm thời gian fetch prompt từ Langfuse, nhưng retrieval chậm ở cả 5 request và là nguyên nhân chung.
 - **Fix action và xác nhận:** tắt `rag_slow` qua `scripts/inject_incident.py --disable`; `/health` cho thấy tất cả incident `false`. Request sau khi tắt có `latency_ms=151` ([evidence](evidence/24-challenge-recovery.json)).
 - **Preventive measure:** theo dõi P95 end-to-end và latency của retrieval span riêng theo feature; cảnh báo khi vượt ngưỡng trong `config/alert_rules.yaml`, kiểm tra retriever/index và rollback cấu hình retrieval khi tái diễn.
@@ -101,7 +101,7 @@ File riêng do Lab Coach cấp đã được đọc tại `config/challenge.json
 - Correlation ID nối request log với trace metadata, còn child spans tách thời gian retrieval và generation để khoanh vùng nguyên nhân.
 - Prompt label là con trỏ triển khai; rollback kiểm chứng bằng trace mới ghi nhận lại version sau khi label production được chuyển về bản trước.
 - **Blocker / cách xử lý:** Python 3.14 trên Windows thiếu wheel cho `pydantic-core` bản đã khóa và máy thiếu MSVC linker; đã cài Python 3.13 trong workspace rồi tạo lại `.venv`. Pytest đầu tiên bị lỗi quyền ở thư mục Temp; chạy lại với `--basetemp` trong workspace và đạt 24/24.
-- **Giới hạn hiện tại:** project Langfuse, 37 trace hợp lệ, rollback và challenge chính thức đã kiểm chứng. Đã có ảnh waterfall practice và ảnh prompt v1/v2 kèm label rollback; ảnh waterfall của trace challenge chính thức vẫn cần bổ sung. Trace index JSON và link project cho phép kiểm tra trực tiếp.
+- **Evidence giao diện:** đã lưu ảnh waterfall challenge, waterfall practice và prompt v1/v2 kèm label rollback. Trace index JSON ghi 37 trace hợp lệ; project Langfuse có thể kiểm tra trực tiếp.
 
 ## 9. Checklist trước khi nộp
 
